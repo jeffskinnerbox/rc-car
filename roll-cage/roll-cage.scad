@@ -27,6 +27,9 @@ T connector
 
 /*----------------------- Fixed Dimensional Parameters -----------------------*/
 
+// OpenSCAD stuff
+$fn = 64;
+
 // https://www.datametal.com/wp-content/uploads/2018/03/Metric-Tap-and-Clearance-Drill-Sizes.pdf
 clearance = 0.2;                   // clearance used for holes, ball joints, etc.
 
@@ -41,9 +44,6 @@ nut_corners = 6.24 + clearance;    // width across corners of hex head (6.01 to 
 
 // curvature used for the teeth
 triangle_corner_radius = 0.10;
-
-// OpenSCAD stuff
-$fn = 64;
 
 
 /*-------------------- Parametric Dimensional Parameters ---------------------*/
@@ -92,6 +92,10 @@ slice_cube = 2 * max_radius + 1;    // slice taken out for joint
 //3_way_corner(seg_length, max_radius);
 
 
+//solid_hub(6, max_radius);
+//ball(slice_cube, min_radius + clearance / 2, max_radius);
+//difference() { solid_hub(6, max_radius); translate([0, 1.4 * slice_cube, 0]) rotate([90, 0, 0]) ball(slice_cube, min_radius, max_radius); translate([0, 2.5 * 5, 0]) rotate([90, 0, 0]) cylinder(h = 7, r1 = max_radius, r2 = 0.5 * min_radius, center = true); }
+//ball_joint_hub(6, min_radius, max_radius, top = false);
 
 
 /*------------------------------ Main Execution ------------------------------*/
@@ -109,9 +113,13 @@ slice_cube = 2 * max_radius + 1;    // slice taken out for joint
 //solid_segment(seg_length, max_radius);
 //solid_hub(6, max_radius);
 
-//ball_joint_hub(6, min_radius, max_radius);
 //translate([0, 0, min_radius]) rotate([90, 0, 0]) ball_segment(2 * seg_length, slice_cube, min_radius, max_radius);
-translate([0, 0, min_radius]) rotate([90, 0, 0]) teeth_segment(seg_length, max_radius);
+//translate([0, 0, min_radius]) rotate([90, 0, 0]) teeth_segment(seg_length, max_radius);
+
+//translate([0, 1.4 * slice_cube, 0]) rotate([90, 0, 0]) ball(slice_cube, min_radius + clearance / 2, max_radius);
+//translate([0, 2.5 * 5, 0]) rotate([90, 0, 0]) cylinder(h = 6.5, r1 =  1.2 * max_radius, r2 = 0.2 * min_radius, center = true);
+
+ball_joint_hub(6, min_radius, max_radius);
 
 
 
@@ -124,15 +132,18 @@ module ball_joint_hub(no_balls, min_r, max_r, top = false) {
         rotate([180, 0, 0]) difference() {
             solid_hub(no_balls, max_r);
 
+            // cut the solid_hub in half
             translate([0, 0, 0.5 * side]) cube([side, side, side], center = true);
 
-            translate([0, 0, -0.5 * min_r]) rotate([0, -90, 0]) cut_hole(0, 0, 0);
+            // drill the hole for the bolt & nut
+            translate([0, 0, -0.1 * min_r]) rotate([0, -90, 0]) cut_hole(0, 0, 0);
 
+            // drill out the ball joints, make the ball cavity slightly larger
             N = 6;
             for (i = [0 : N - 1]) {
                 rotate([0, 0, i * 360 / N]) {
-                    translate([0, 1.4 * slice_cube, 0]) rotate([90, 0, 0]) ball(slice_cube, min_r, max_r);
-                    translate([0, 2.5 * 5, 0]) rotate([90, 0, 0]) cylinder(h = 5, r1 = max_r, r2 = 0.5 * min_r, center = true);
+                    translate([0, 1.35 * slice_cube, 0]) rotate([90, 0, 0]) ball(slice_cube, min_r + clearance / 2, max_r);
+                    translate([0, 2.5 * 5, 0]) rotate([90, 0, 0]) cylinder(h = 6.5, r1 =  1.2 * max_r, r2 = 0.2 * min_r, center = true);
                 }
             }
         }
@@ -147,8 +158,11 @@ module solid_hub(no_balls, max_r) {
 
     side = 1.5 * max_r;
 
-    hull() rotate_extrude(angle = 360, convexity = 10, $fn = no_balls)
-        translate([side, 0, 0]) rotate([0, 0, 30]) circle(r = side, $fn = 6);
+   intersection() {
+        cube([4 * side, 4 * side, 2.5 * min_radius], true);
+        hull() rotate_extrude(angle = 360, convexity = 10, $fn = no_balls)
+            translate([side, 0, 0]) rotate([0, 0, 30]) circle(r = side, $fn = 6);
+    }
 
 }
 
