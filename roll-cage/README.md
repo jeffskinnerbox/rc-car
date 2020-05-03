@@ -93,6 +93,8 @@ Free fit has a larger allowance while Close Fit has a tighter allowance.
 
 * [Metric Tap and Clearance Drill Sizes](https://www.datametal.com/wp-content/uploads/2018/03/Metric-Tap-and-Clearance-Drill-Sizes.pdf)
 
+# New Idea
+* [Bay-Window Curtain Rod Connector](https://www.thingiverse.com/thing:2034462)
 
 
 
