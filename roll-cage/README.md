@@ -33,6 +33,10 @@ T connector
 4-way connector
 5-way connector
 
+## T-Slot Aluminum Extrusions
+* [Getting Started With Aluminum Extrusions](https://hackaday.com/2021/05/25/getting-started-with-aluminum-extrusions/)
+* [How to Build Anything Out of Aluminum Extrusion and 3D Printed Brackets](https://hackaday.com/2018/05/08/how-to-build-anything-out-of-aluminum-extrusion-and-3d-printed-brackets/)
+
 ## OpenSCAD
 OpenSCAD is an open source constructive solid geometry (CSG)
 computer aided design (CAD) modeling tool.
@@ -98,6 +102,9 @@ Free fit has a larger allowance while Close Fit has a tighter allowance.
 
 # New Idea
 * [Bay-Window Curtain Rod Connector](https://www.thingiverse.com/thing:2034462)
+
+# BallJoint3.scad
+* [Customizable Ball Joint](https://www.thingiverse.com/thing:4742967)
 
 
 

@@ -5,13 +5,15 @@ Version:      0.0.1
 
 
 <div align="center">
-<img src="http://www.foxbyrd.com/wp-content/uploads/2018/02/file-4.jpg" title="These materials require additional work and are not ready for general use." align="center">
+<img src="https://raw.githubusercontent.com/jeffskinnerbox/blog/main/content/images/banners-bkgrds/work-in-progress.jpg" title="These materials require additional work and are not ready for general use." align="center" width=420px height=219px>
 </div>
+
 
 ----
 
+
 # Radio Controlled Car
-I have been passively investigating options for creating
+In 2019, I was passively investigating options for creating
 an autonomous radio controlled car for sometime.
 Such a project has the possibility of mixing many technologies
 (e.g. RC car tech along with a wide range of sensors, SLAM, FPV, machine learning, etc.)
@@ -26,7 +28,7 @@ has links to [posted plans][23] and [videos on Youtube][24]
 for his PLA 3D printed RC car he calls Tarmo3.
 This is [Kris' third version][25] of a 3D printed RC Car, now with 4 wheel drive
 I was impress with everything I saw,
-since it appeared to be superior to all the other 3D printed RC cars out there,
+since it appeared to be superior to all the other 3D printed RC cars out there at the time,
 so I decide to make my own.
 
 
